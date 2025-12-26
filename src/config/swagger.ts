@@ -71,7 +71,15 @@ const options: swaggerJsdoc.Options = {
     info: {
       title: "Chessvine API",
       version: "1.0.0",
-      description: "Chess analysis and preparation API",
+      description:
+        "Chess analysis and preparation API. Provides endpoints for uploading PGN files, analyzing chess games with AI, and retrieving analysis results. Supports both authenticated users and guest users.",
+      contact: {
+        name: "Chessvine Support",
+        email: "support@chessvine.com",
+      },
+      license: {
+        name: "ISC",
+      },
     },
     servers: getServers(),
     components: {
@@ -80,9 +88,65 @@ const options: swaggerJsdoc.Options = {
           type: "http",
           scheme: "bearer",
           bearerFormat: "JWT",
+          description: "JWT token obtained from authentication endpoints",
+        },
+      },
+      schemas: {
+        Error: {
+          type: "object",
+          properties: {
+            success: {
+              type: "boolean",
+              example: false,
+            },
+            error: {
+              type: "object",
+              properties: {
+                message: {
+                  type: "string",
+                  description: "Error message",
+                },
+              },
+            },
+          },
+        },
+        Success: {
+          type: "object",
+          properties: {
+            success: {
+              type: "boolean",
+              example: true,
+            },
+          },
         },
       },
     },
+    tags: [
+      {
+        name: "Health",
+        description: "Health check endpoints",
+      },
+      {
+        name: "Auth",
+        description: "Authentication and user management endpoints",
+      },
+      {
+        name: "Upload",
+        description: "File upload endpoints for PGN files",
+      },
+      {
+        name: "Analysis",
+        description: "Chess game analysis endpoints",
+      },
+      {
+        name: "Puzzles",
+        description: "Chess puzzle endpoints",
+      },
+      {
+        name: "Dashboard",
+        description: "User dashboard and statistics endpoints",
+      },
+    ],
   },
   apis: getApiPaths(),
 };

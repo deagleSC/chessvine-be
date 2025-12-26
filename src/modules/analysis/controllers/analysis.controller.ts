@@ -72,6 +72,36 @@ import { AuthenticatedRequest } from "../../auth";
  *                     message:
  *                       type: string
  *                       example: "No files provided"
+ *       401:
+ *         description: Unauthorized - invalid or missing token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
  */
 export async function uploadFiles(
   req: AuthenticatedRequest,
@@ -171,6 +201,40 @@ export async function uploadFiles(
  *                             type: string
  *       400:
  *         description: Bad request - invalid URLs or validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: Unauthorized - invalid or missing token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
  */
 export async function createBulkAnalysis(
   req: AuthenticatedRequest,
@@ -247,8 +311,22 @@ export async function createBulkAnalysis(
  *                       example: "ana_550e8400-e29b-41d4-a716-446655440001"
  *       400:
  *         description: Bad request - invalid PGN or validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  *       401:
  *         description: Unauthorized - authentication required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  */
 export async function createCustomAnalysis(
   req: AuthenticatedRequest,
@@ -328,6 +406,40 @@ export async function createCustomAnalysis(
  *                       status: "PENDING"
  *       400:
  *         description: Bad request - missing or invalid IDs
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: Unauthorized - invalid or missing token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
  */
 export async function getAnalysisStatus(
   req: AuthenticatedRequest,
@@ -453,22 +565,24 @@ export async function getAnalysisStatus(
  *                     completed_at:
  *                       type: string
  *                       format: date-time
+ *       401:
+ *         description: Unauthorized - invalid or missing token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  *       404:
  *         description: Analysis not found
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   example: false
- *                 error:
- *                   type: object
- *                   properties:
- *                     message:
- *                       type: string
- *                       example: "Analysis not found"
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  */
 export async function getAnalysisById(
   req: AuthenticatedRequest,

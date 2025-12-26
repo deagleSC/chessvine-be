@@ -80,7 +80,20 @@ export async function getUserPuzzles(
   return Puzzle.find({ user_id: userId }).sort({ created_at: -1 }).exec();
 }
 
+/**
+ * Get all puzzles for a user by analysis ID
+ */
+export async function getPuzzlesByAnalysisId(
+  userId: string,
+  analysisId: string,
+): Promise<IPuzzleDocument[]> {
+  return Puzzle.find({ user_id: userId, analysis_id: analysisId })
+    .sort({ created_at: -1 })
+    .exec();
+}
+
 export const puzzleService = {
   savePuzzles,
   getUserPuzzles,
+  getPuzzlesByAnalysisId,
 };
