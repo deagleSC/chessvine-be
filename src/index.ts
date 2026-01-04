@@ -13,6 +13,7 @@ import { logger } from "./shared/utils/logger";
 import { analysisRoutes } from "./modules/analysis";
 import { authRoutes } from "./modules/auth";
 import { dashboardRoutes } from "./modules/users";
+import { supportRoutes } from "./modules/support";
 import workerRoutes from "./modules/analysis/routes/worker.routes";
 import puzzleRoutes from "./modules/analysis/routes/puzzle.routes";
 
@@ -66,6 +67,7 @@ app.use("/api/v1", analysisRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/puzzles", puzzleRoutes);
+app.use("/api/v1/support", supportRoutes);
 app.use("/worker", workerRoutes);
 
 // Error handling
